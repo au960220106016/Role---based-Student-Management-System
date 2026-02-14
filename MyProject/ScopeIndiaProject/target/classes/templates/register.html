@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="/css/nav-footer.css" rel="stylesheet">
+    <style>
+        body{
+            background-color: #051a6b !important;
+        }
+        .register-section{
+            padding: 50px 15%;
+            background-image: url(/images/snowpark-skis-headerbg2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .register-form{
+            padding: 50px 15%;
+            background-color: rgba(185, 185, 185, 0.129);
+            color:white;
+            border: 2px solid gray;
+            border-radius: 10px;
+        }
+        label{
+            font-size: 15px;
+        }
+        @media (max-width:768px){
+            .register-section, .register-form{
+                padding:50px 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand mx-auto" href="home.html">
+                <img src="/images/scope-india-logo-bird.png" alt="Logo">
+            </a>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="/home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" id="about-link" href="/about">Know SCOPE INDIA</a></li>
+<!--                    <li class="nav-item"><a class="nav-link" href="/dashboard">Student Dashboard</a></li>-->
+                </ul>
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    <li class="mt-2 nav-item">
+                        <a class="register-btn" href="/register">Register Now</a>
+                    </li>
+                </ul>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+</div>
+    <div class="register-section">
+        <h1 class="text-center text-warning mb-5">Register Now!</h1>
+        <div class="register-form"> 
+            <h2 class="text-center">Student Registration</h2>
+            <form id="registrationForm" th:action="@{/register}" th:object="${addStudent}" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label>First Name:</label>
+                    <input type="text" class="form-control" th:field="*{firstname}" name="first_name" required>
+                </div>
+                <div class="mb-3">
+                    <label>Last Name:</label>
+                    <input type="text" class="form-control" th:field="*{lastname}" name="last_name" required>
+                </div>
+                <div class="mb-3">
+                    <label>Gender:</label>
+                    <select class="form-control" th:field="*{gender}" name="gender" required>
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label>Date of Birth:</label>
+                    <input type="date" class="form-control" th:field="*{dob}" name="dob" required>
+                </div>
+                <div class="mb-3">
+                    <label>Email:</label>
+                    <input type="email" class="form-control" th:field="*{email}" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label>Phone Number:</label>
+                    <input type="text" class="form-control" th:field="*{phone}" name="phone" required>
+                </div>
+                <div class="mb-3">
+                    <label>Country:</label>
+                    <select class="form-control" id="country" th:field="*{country}" name="country" required>
+                        <option value="">Select Country</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label>State:</label>
+                    <select class="form-control" id="state" th:field="*{state}" name="state" required>
+                        <option value="">Select State</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label>City:</label>
+                    <select class="form-control" id="city" th:field="*{city}" name="city" required>
+                        <option value="">Select City</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label>Hobbies:</label>
+                    <div class="row">
+                        <div class="col-6 col-md-4">
+                            <input type="checkbox" name="hobbies" value="Reading"> Reading
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <input type="checkbox" name="hobbies" value="Writing"> Writing
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <input type="checkbox" name="hobbies" value="Traveling"> Traveling
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <input type="checkbox" name="hobbies" value="Sports"> Sports
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <input type="checkbox" name="hobbies" value="Music"> Music
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <input type="checkbox" name="hobbies" value="Movies"> Movies
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <input type="checkbox" name="hobbies" value="Songs"> Others
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label>Upload Photo:&nbsp;(less than 300kb)</label>
+                    <input type="file" class="form-control" name="photoFile" accept="image/*" required>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Register</button>
+            </form>
+        </div>
+        
+        <div id="message" class="mt-3 text-center"></div>
+    </div>
+    <div>
+        <footer class="footer text-white text-center py-5 mt-5">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-4 mb-3">
+                        <h3 class="gradient-text fw-bold">1000+</h3>
+                        <p class="mb-0">STUDENTS TRAINED EVERY YEAR</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <h3 class="gradient-text fw-bold">30+</h3>
+                        <p class="mb-0">COMPUTER COURSES</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <h3 class="gradient-text fw-bold">95%</h3>
+                        <p class="mb-0">STUDENTS GETTING PLACED EVERY YEAR</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-info mt-4">
+                <img src="/images/scope-india-logo-home-page.png" alt="Logos">
+                <p>Kerala: Technopark TVM | Thampanoor TVM | Kaloor Kochi, Tamil Nadu: Distillery Road | Palosa Road Nagercoil</p>
+                <img alt="ISO 9001 Certified badge" width="450" height="120" src="/images/iso_iaflogo.png"/>
+                <p>An ISO 9001:2015 Certified Company</p>
+                <p>All Rights Reserved Suffix E Solutions  2007-2025</p>
+                <p>9746586273 (TPK) | 9746582073 (TVM) | 7569393448 (KKA) | 8075551865 (NGL) | info@scopeindia.org</p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const apiKey = "NU5mQ2lDbk9CZVJteWhBQTY0YXBKQ0pBbVBYUUNiVVF0V1Q3YzJGVA==";
+            const headers = { "X-CSCAPI-KEY": apiKey };
+
+            const countryDropdown = $("#country");
+            const stateDropdown = $("#state");
+            const cityDropdown = $("#city");
+
+            function fetchData(url, dropdown, defaultText, callback) {
+                $.ajax({
+                    url: url,
+                    method: "GET",
+                    headers: headers,
+                    success: function (data) {
+                        dropdown.html(`<option value="">${defaultText}</option>`);
+                        if (data.length) {
+                            data.forEach(callback);
+                        } else {
+                            dropdown.html(`<option value="">No Data Found</option>`);
+                        }
+                    },
+                    error: function () {
+                        console.error(`Error fetching ${defaultText.toLowerCase()}`);
+                    }
+                });
+            }
+
+            // Fetch Countries
+            fetchData("https://api.countrystatecity.in/v1/countries", countryDropdown, "Select Country", 
+                country => countryDropdown.append(new Option(country.name, country.iso2))
+            );
+
+            // Fetch States based on Country
+            countryDropdown.change(function () {
+                const countryCode = $(this).val();
+                if (!countryCode) return;
+                fetchData(`https://api.countrystatecity.in/v1/countries/${countryCode}/states`, stateDropdown, "Select State", 
+                    state => stateDropdown.append(new Option(state.name, state.iso2))
+                );
+                cityDropdown.html('<option value="">Select City</option>');
+            });
+
+            // Fetch Cities based on State
+            stateDropdown.change(function () {
+                const countryCode = countryDropdown.val();
+                const stateCode = $(this).val();
+                if (!countryCode || !stateCode) return;
+                fetchData(`https://api.countrystatecity.in/v1/countries/${countryCode}/states/${stateCode}/cities`, cityDropdown, "Select City", 
+                    city => cityDropdown.append(new Option(city.name, city.name))
+                );
+            });
+        });
+    </script>
+</body>
+</html>
